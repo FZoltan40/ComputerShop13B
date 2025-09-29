@@ -6,5 +6,6 @@ namespace ComputerShop13B.Services
     {
         ICollection<object> GetAllData();
         object GetData(string username, string password);
+        object AddRecord(string username, string password, string email, string fullname);
     }
 }

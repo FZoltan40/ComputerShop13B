@@ -49,3 +49,5 @@ D:\Desktop\13BBacend\ComputerShop13B\bin\Debug\System.Numerics.Vectors.xml
 D:\Desktop\13BBacend\ComputerShop13B\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Desktop\13BBacend\ComputerShop13B\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\Computer.08E84B18.Up2Date
+D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\RegisterPage.g.cs
+D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\RegisterPage.baml

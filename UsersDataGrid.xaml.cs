@@ -30,7 +30,19 @@ namespace ComputerShop13B
 
         private void updateUserButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if (usersDataGrid.SelectedItem is DataRowView item)
+            {
+                var user = new
+                {
+                    UserName = item["UserName"],
+                    FullName = item["FullName"],
+                    Email = item["Email"],
+                    Time = item["RegTime"],
+                    Id = item["Id"]
+                };
+                MessageBox.Show(database.UpdateUser(user).ToString());
+                usersDataGrid.ItemsSource = database.GetAllData();
+            }
         }
     }
 }

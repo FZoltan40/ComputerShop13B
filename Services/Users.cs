@@ -114,7 +114,25 @@ namespace ComputerShop13B.Services
 
         public object UpdateUser(object user)
         {
-            throw new NotImplementedException();
+            conn._connection.Open();
+
+            string sql = "UPDATE `users` SET `UserName`=@username,`FullName`=@fullname,`Email`=@email,`RegTime`=@time WHERE `Id` = @id ";
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn._connection);
+
+            var record = user.GetType().GetProperties();
+
+            cmd.Parameters.AddWithValue("@username", record[0].GetValue(user));
+            cmd.Parameters.AddWithValue("@fullname", record[1].GetValue(user));
+            cmd.Parameters.AddWithValue("@email", record[2].GetValue(user));
+            cmd.Parameters.AddWithValue("@time", record[3].GetValue(user));
+            cmd.Parameters.AddWithValue("@id", record[4].GetValue(user));
+
+            cmd.ExecuteNonQuery();
+
+            conn._connection.Close();
+
+            return new { message = "Sikeres frissítés." };
         }
     }
 }

@@ -74,6 +74,7 @@ namespace ComputerShop13B.Services
 
         }
 
+
         public string GenerateSalt()
         {
             byte[] salt = new byte[16];
@@ -93,6 +94,27 @@ namespace ComputerShop13B.Services
                 byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return Convert.ToBase64String(hash);
             }
+        }
+
+        public object DeleteUser(object id)
+        {
+            conn._connection.Open();
+
+            string sql = "DELETE FROM users WHERE Id = @id";
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn._connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+
+            conn._connection.Close();
+
+            return new { message = "Sikeres trölés." };
+        }
+
+        public object UpdateUser(object user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

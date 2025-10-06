@@ -7,5 +7,7 @@ namespace ComputerShop13B.Services
         DataView GetAllData();
         bool GetData(string username, string password);
         object AddRecord(string username, string password, string email, string fullname);
+        object DeleteUser(object id);
+        object UpdateUser(object user);
     }
 }

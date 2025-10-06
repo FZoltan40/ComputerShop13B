@@ -1,4 +1,6 @@
 ﻿using ComputerShop13B.Services;
+using System.Data;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ComputerShop13B
@@ -19,7 +21,11 @@ namespace ComputerShop13B
 
         private void deleteUserButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if (usersDataGrid.SelectedItem is DataRowView item)
+            {
+                MessageBox.Show(database.DeleteUser(item["Id"]).ToString());
+                usersDataGrid.ItemsSource = database.GetAllData();
+            }
         }
 
         private void updateUserButton_Click(object sender, System.Windows.RoutedEventArgs e)

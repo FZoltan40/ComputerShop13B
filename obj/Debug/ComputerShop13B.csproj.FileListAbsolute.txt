@@ -13,7 +13,6 @@ D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\ComputerShop13B.csproj.GenerateRe
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\ComputerShop13B.csproj.CoreCompileInputs.cache
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\ComputerShop13B.exe
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\ComputerShop13B.pdb
-D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\ComputerShop13B.exe.config
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\LoginPage.g.cs
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\LoginPage.baml
 D:\Desktop\13BBacend\ComputerShop13B\bin\Debug\BouncyCastle.Cryptography.dll
@@ -51,3 +50,6 @@ D:\Desktop\13BBacend\ComputerShop13B\bin\Debug\System.Threading.Tasks.Extensions
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\Computer.08E84B18.Up2Date
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\RegisterPage.g.cs
 D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\RegisterPage.baml
+D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\UsersDataGrid.g.cs
+D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\UsersDataGrid.baml
+D:\Desktop\13BBacend\ComputerShop13B\obj\Debug\ComputerShop13B.exe.config

@@ -10,7 +10,7 @@ namespace ComputerShop13B
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new UsersDataGrid());
+            MainFrame.Navigate(new LoginPage(this));
         }
     }
 }

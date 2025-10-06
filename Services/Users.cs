@@ -16,13 +16,13 @@ namespace ComputerShop13B.Services
             string hashedPassword = ComputeHmacSha256(password, salt);
             conn._connection.Open();
 
-            string sql = "INSERT INTO `users`(`UserName`, `FullName`, `Password`, `Email`, `Salt`) VALUES (@username,@password,@email,@fullname,@salt)";
+            string sql = "INSERT INTO `users`(`UserName`, `FullName`, `Password`, `Email`, `Salt`) VALUES (@username,@fullname,@password,@email,@salt)";
 
             MySqlCommand cmd = new MySqlCommand(sql, conn._connection);
             cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", hashedPassword);
-            cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@fullname", fullname);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@password", hashedPassword);
             cmd.Parameters.AddWithValue("@salt", salt);
 
             cmd.ExecuteNonQuery();
@@ -53,25 +53,25 @@ namespace ComputerShop13B.Services
         {
             conn._connection.Open();
 
-            string sql = "SELECT * FROM users WHERE UserName = @username AND Password = @password";
+            string sql = "SELECT * FROM users WHERE UserName = @username";
 
             MySqlCommand cmd = new MySqlCommand(sql, conn._connection);
             cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
             if (reader.Read())
             {
+                string storedHash = reader.GetString(3);
+                string storedSalt = reader.GetString(6);
+                string compteHash = ComputeHmacSha256(password, storedSalt);
                 conn._connection.Close();
-                return true;
+                return storedHash == compteHash;
 
             }
-            else
-            {
-                conn._connection.Close();
-                return false;
-            }
+            conn._connection.Close();
+            return false;
+
         }
 
         public string GenerateSalt()

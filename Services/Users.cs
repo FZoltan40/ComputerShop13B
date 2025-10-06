@@ -1,5 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ComputerShop13B.Services
 {
@@ -9,15 +12,18 @@ namespace ComputerShop13B.Services
 
         public object AddRecord(string username, string password, string email, string fullname)
         {
+            string salt = GenerateSalt();
+            string hashedPassword = ComputeHmacSha256(password, salt);
             conn._connection.Open();
 
-            string sql = "INSERT INTO `users`(`UserName`, `FullName`, `Password`, `Email`) VALUES (@username,@password,@email,@fullname)";
+            string sql = "INSERT INTO `users`(`UserName`, `FullName`, `Password`, `Email`, `Salt`) VALUES (@username,@password,@email,@fullname,@salt)";
 
             MySqlCommand cmd = new MySqlCommand(sql, conn._connection);
             cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@password", hashedPassword);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@fullname", fullname);
+            cmd.Parameters.AddWithValue("@salt", salt);
 
             cmd.ExecuteNonQuery();
 
@@ -65,6 +71,27 @@ namespace ComputerShop13B.Services
             {
                 conn._connection.Close();
                 return false;
+            }
+        }
+
+        public string GenerateSalt()
+        {
+            byte[] salt = new byte[16];
+
+            using (var rnd = RandomNumberGenerator.Create())
+            {
+                rnd.GetBytes(salt);
+            }
+
+            return Convert.ToBase64String(salt);
+        }
+
+        public string ComputeHmacSha256(string password, string salt)
+        {
+            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(salt)))
+            {
+                byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hash);
             }
         }
     }

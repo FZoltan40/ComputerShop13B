@@ -9,6 +9,49 @@
       Title="UsersDataGrid">
 
     <Grid>
-        <DataGrid x:Name="usersDataGrid" Margin="20"/>
+        <DataGrid x:Name="usersDataGrid" Margin="20"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Felhasználónév" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="Teljesnév:" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Regisztráció" Binding="{Binding RegTime}"/>
+
+                <DataGridTemplateColumn Header="Töröl">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                x:Name="deleteUserButton"
+                                Content="X"
+                                Foreground="White"
+                                Background="Red"
+                                FontWeight="Bold"
+                                FontSize="15"
+                                Click="deleteUserButton_Click"
+                                />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Módosít">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                 x:Name="updateUserButton"
+                                 Content="M"
+                                 Foreground="Black"
+                                 Background="Yellow"
+                                 FontWeight="Bold"
+                                 FontSize="15"
+                                Click="updateUserButton_Click"
+                                 />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

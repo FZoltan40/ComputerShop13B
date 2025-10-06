@@ -16,5 +16,15 @@ namespace ComputerShop13B
             usersDataGrid.ItemsSource = database.GetAllData();
             _mainWindow = mainWindow;
         }
+
+        private void deleteUserButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void updateUserButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
